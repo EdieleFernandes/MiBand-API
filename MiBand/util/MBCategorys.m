@@ -26,16 +26,7 @@
 @implementation CBPeripheral (MBIdentifier)
 
 - (NSString *)peripheralIdentifier {
-    if ([self respondsToSelector:@selector(identifier)]) {
-        return [self.identifier UUIDString];
-    }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    CFUUIDRef uuid = self.UUID;
-    CFStringRef string = CFUUIDCreateString(kCFAllocatorDefault, uuid);
-    NSString *identifier = (NSString *)CFBridgingRelease(string);
-    return identifier;
-#pragma clang diagnostic pop
+    return [self.identifier UUIDString];
 }
 
 @end
